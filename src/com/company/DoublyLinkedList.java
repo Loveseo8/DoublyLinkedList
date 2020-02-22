@@ -3,55 +3,86 @@ package com.company;
 public class DoublyLinkedList {
     Node head;
 
-    public void push(int new_data) {
-        Node new_Node = new Node(new_data);
+    public void push(int newData) {
+        Node newNode = new Node(newData);
 
-        new_Node.next = head;
-        new_Node.prev = null;
+        newNode.next = head;
+        newNode.prev = null;
 
         if (head != null)
-            head.prev = new_Node;
-        head = new_Node;
+            head.prev = newNode;
+        head = newNode;
     }
 
-    public void insertAfter(Node prev_Node, int new_data) {
+    public void insertAfter(Node prevNode, int newData) {
 
-        if (prev_Node == null) {
+        if (prevNode == null) {
             System.out.println("The given previous node cannot be NULL ");
             return;
         }
 
-        Node new_node = new Node(new_data);
+        Node newnode = new Node(newData);
 
-        new_node.next = prev_Node.next;
-        prev_Node.next = new_node;
-        new_node.prev = prev_Node;
+        newnode.next = prevNode.next;
+        prevNode.next = newnode;
+        newnode.prev = prevNode;
 
-        if (new_node.next != null)
-            new_node.next.prev = new_node;
+        if (newnode.next != null)
+            newnode.next.prev = newnode;
     }
 
-    void append(int new_data) {
-        Node new_node = new Node(new_data);
+    void addToTheEnd(int newData) {
+        Node newnode = new Node(newData);
         Node last = head;
-        new_node.next = null;
+        newnode.next = null;
 
         if (head == null) {
-            new_node.prev = null;
-            head = new_node;
+            newnode.prev = null;
+            head = newnode;
             return;
         }
 
         while (last.next != null) last = last.next;
 
-        last.next = new_node;
-        new_node.prev = last;
+        last.next = newnode;
+        newnode.prev = last;
     }
 
+    public void partition(Node node, int x) {
+        Node last = null;
+        Node node1 = node;
+        Node last1 = null;
+
+        while (node != null) {
+            if (node.data < x) {
+                System.out.print(node.data + " ");
+                last = node;
+                node = node.next;
+
+            }
+            else if (node.data >= x) {
+                last = node;
+                node = node.next;
+
+            }
+        }
+        while (node1 != null) {
+            if (node1.data >= x) {
+                System.out.print(node1.data + " ");
+                last1 = node1;
+                node1 = node1.next;
+
+            }
+            else if (node1.data < x) {
+                last1 = node1;
+                node1 = node1.next;
+            }
+        }
+    }
     public void printList(Node node) {
         Node last = null;
 
-        System.out.println("Traversal in forward Direction");
+        System.out.println("In forward direction");
         while (node != null) {
             System.out.print(node.data + " ");
             last = node;
@@ -60,7 +91,7 @@ public class DoublyLinkedList {
 
         System.out.println();
 
-        System.out.println("Traversal in reverse direction");
+        System.out.println("In reverse direction");
 
         while (last != null) {
             System.out.print(last.data + " ");
@@ -68,7 +99,7 @@ public class DoublyLinkedList {
         }
     }
 
-    void deleteNode(Node head_ref, Node del) {
+    void deleteNode(Node headref, Node del) {
 
         if (head == null || del == null) {
             return;
