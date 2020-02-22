@@ -4,11 +4,19 @@ public class Main {
 
     public static void main(String[] args) {
 	DoublyLinkedList list = new DoublyLinkedList();
-	list.append(6);
-	list.push(7);
+	list.push(9);
+	list.push(2);
 	list.push(1);
-	list.append(4);
-	list.insertAfter(list.head.next, 8);
+	list.push(9);
+	list.push(7);
+	list.push(5);
+	list.push(3);
+	list.push(2);
+	list.push(1);
+
+	list.partition(list.head, 5);
+
+	System.out.println();
 
 	list.printList(list.head);
     }
